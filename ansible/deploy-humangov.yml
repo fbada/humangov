@@ -1,0 +1,12 @@
+- hosts: all
+  roles:
+    - humangov_webapp
+    
+- name: Deploy web application
+  hosts: webservers
+  tasks:
+    - name: Copy the application zip file to the destination
+      ansible.builtin.copy:
+        src: /home/ec2-user/environment/human-gov-infrastructure/src/humangov-app.zip
+        dest: /home/ec2-user/environment/human-gov-application/src/
+        remote_src: yes
